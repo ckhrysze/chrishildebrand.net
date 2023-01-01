@@ -1,13 +1,13 @@
-# fly.toml file generated for chrishildebrand-staging on 2023-03-27T21:33:20-04:00
+# fly.toml file generated for chrishildebrand on 2023-03-19T15:15:19-04:00
 
-app = "chrishildebrand-staging"
+app = "chrishildebrand"
 kill_signal = "SIGTERM"
 kill_timeout = 5
 primary_region = "ord"
 processes = []
 
 [env]
-  PHX_HOST = "chrishildebrand-staging.fly.dev"
+  PHX_HOST = "chrishildebrand.fly.dev"
   PORT = "8080"
 
 [experimental]
