@@ -1,0 +1,61 @@
+<.main>
+  <div class="">
+    <form
+      action="//formspree.io/contact@chrishildebrand.net"
+      method="POST"
+      name="sentMessage"
+      id="contactForm"
+      novalidate=""
+    >
+      <input type="hidden" name="_subject" value="New submission!" />
+      <input type="text" name="_gotcha" style="display:none" />
+      <div>
+        <.input
+          id="name"
+          name="name"
+          placeholder="Name"
+          data-validation-required-message="Please enter your name."
+          aria-invalid="false"
+        />
+      </div>
+      <br />
+      <div>
+        <.input
+          id="email"
+          type="email"
+          name="_replyto"
+          placeholder="Email Address"
+          required=""
+          data-validation-required-message="Please enter your email address."
+          aria-invalid="false"
+        />
+      </div>
+      <br />
+      <div>
+        <.input
+          id="message"
+          name="message"
+          type="textarea"
+          rows="5"
+          class="form-control"
+          placeholder="Message"
+          required=""
+          data-validation-required-message="Please enter a message."
+          aria-invalid="false"
+        >
+        </.input>
+      </div>
+      <br />
+      <div>
+        <.button>Send</.button>
+      </div>
+    </form>
+  </div>
+
+  <div style="text-align: center">
+    ---- or ---- <br /> Direct contact via
+    <.a href="tel:+17733575655">Phone</.a>
+    or
+    <.a href="mailto:christopher+2023@chrishildebrand.net">Email</.a>
+  </div>
+</.main>

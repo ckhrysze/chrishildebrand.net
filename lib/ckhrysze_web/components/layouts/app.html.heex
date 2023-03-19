@@ -1,0 +1,24 @@
+<div class="flex flex-col items-center gap-8">
+  <div class="w-4/5 md:w-2/3 xl:w-1/2 bg-stone-400 bg-opacity-20 opacity-80 border border-t-0 border-stone-300 rounded-b-lg">
+    <nav class="w-full">
+      <ul class="flex justify-center md:gap-16 m-4 text-sm">
+        <li>
+          <.a href="/">Home</.a>
+          <span class="md:hidden text-black">&nbsp;|&nbsp;</span>
+        </li>
+        <li>
+          <.a href={~p"/blog"}>Blog</.a>
+          <span class="md:hidden text-black">&nbsp;|&nbsp;</span>
+        </li>
+        <li>
+          <.a href={~p"/radar"}>Radar</.a>
+          <span class="md:hidden text-black">&nbsp;|&nbsp;</span>
+        </li>
+        <li>
+          <.a href={~p"/contact"}>Contact</.a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <%= @inner_content %>
+</div>
