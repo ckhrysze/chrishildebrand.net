@@ -18,11 +18,10 @@ defmodule CkhryszeWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
-    get "/blog", BlogController, :list
-    # get "/blog/:id", PageController, :blog_entry
     get "/radar", PageController, :radar
     get "/learn", PageController, :learn
     get "/contact", PageController, :contact
+    get "/blog", BlogController, :list
     get "/blog/:slug", BlogController, :article
   end
 

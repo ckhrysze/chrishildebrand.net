@@ -13,12 +13,12 @@ defmodule CkhryszeWeb.Articles.MnesiaConceptToReality do
     ~H"""
 
 
-<p>At the virtual ElixirConf 2020 <a href="https://twitter.com/alex_peachey" class="text-blue-900">@alex_peachey</a>
+<p>At the virtual ElixirConf 2020 <.a href="https://twitter.com/alex_peachey" class="text-blue-900">@alex_peachey</.a>
   and
   I led a class on
   building a small liveview app and deploying it to AWS. Although the video is not posted anywhere (yet), the steps we
-  followed, the code we used, and the Terraform scripts to setup the structure created before the class is all hosted <a
-    href="https://github.com/versus-systems/nook_book" class="text-blue-900">here.</a> and the outline is reprinted
+  followed, the code we used, and the Terraform scripts to setup the structure created before the class is all hosted <.a
+    href="https://github.com/versus-systems/nook_book" class="text-blue-900">here.</.a> and the outline is reprinted
   below:
 </p>
 

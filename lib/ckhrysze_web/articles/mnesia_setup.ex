@@ -14,11 +14,11 @@ defmodule CkhryszeWeb.Articles.MnesiaSetup do
     <p>
       A while back at work we decided to transition to MNesia from the existing combiniation of ETS and Genservers.
       Although replacing the in memory scenarios on local dev machines was straight forward, we had several obstacles when
-      moving to a clustered cloud setup. I wrote up some of the lessons we learned at the <a
+      moving to a clustered cloud setup. I wrote up some of the lessons we learned at the <.a
         href="https://engineering.versussystems.com/mnesia-and-distillery"
         class="text-blue-900"
       >company engineering
-        blog</a>.
+        blog</.a>.
     </p>
     """
   end

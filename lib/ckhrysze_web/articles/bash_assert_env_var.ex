@@ -17,12 +17,12 @@ defmodule CkhryszeWeb.Articles.BashAssertEnvVar do
   script, or anywhere else in the project. Tracing back, the original code to set the variable relied
   on <span class="highlight">find</span> from the current user's home directory, and was therefore not
   scaling well. The commit suggested moving it to any of the other places one might set environment
-  variables (for example, <a href="/blog/direnv/">Direnv</a>).</p>
+  variables (for example, <.a href="/blog/direnv/">Direnv</.a>).</p>
 
 <p>However, there was nothing ensuring that variable existed. Seeing a good opportunity to make things
   clearer for the next developer to come along, I went to Stack Overflow (well, Google, but clicked the
   first Stack Overflow result). Not only did I find
-  <a href="https://stackoverflow.com/a/307735/9276">an answer</a>, but a very thorough explaination.
+  <.a href="https://stackoverflow.com/a/307735/9276">an answer</.a>, but a very thorough explaination.
 </p>
 
 <p>This gist is just a quick example to remind myself how this technique works.</p>

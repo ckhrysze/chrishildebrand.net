@@ -12,16 +12,16 @@ defmodule CkhryszeWeb.Articles.VueCli3WithTailwind do
   def render(assigns) do
     ~H"""
     <p>
-      I have been happily using <a href="https://vuejs.org/">Vue.js</a>
-      for some time now, and a bit more recently <a href="https://tailwindcss.com/">Tailwind CSS</a>. Although there were likely some webpack weirdness to get them
+      I have been happily using <.a href="https://vuejs.org/">Vue.js</.a>
+      for some time now, and a bit more recently <.a href="https://tailwindcss.com/">Tailwind CSS</.a>. Although there were likely some webpack weirdness to get them
       working the first time, it was painless enough that I no longer remember the process. However, I recently felt like
-      spinning up something new with the shiny <a href="https://cli.vuejs.org/">Vue CLI</a>, but was a bit worried on how
+      spinning up something new with the shiny <.a href="https://cli.vuejs.org/">Vue CLI</.a>, but was a bit worried on how
       the integration would work.
     </p>
 
     <p>
       After not immediately finding anything in the docs, I went to google, and quickly found
-      <a href="https://medium.com/@morrislaptop">this article.</a>
+      <.a href="https://medium.com/@morrislaptop">this article.</.a>
       Although it got me most of the way there, it left off a
       few key things I needed to be fully integrated. I'll list all the steps, but essentially it skipped actually
       installing Tailwind (I assume because that seemed obvious) and didn't set the config to use the tailwind.js file
@@ -65,7 +65,7 @@ defmodule CkhryszeWeb.Articles.VueCli3WithTailwind do
     <div>
       <div class="text-lg">Create a css file using Tailwind directives</div>
       <span class="text-sm">
-        I typically just start with exactly the file contents listed <a href="https://tailwindcss.com/docs/installation#3-use-tailwind-in-your-css">here</a>. If you do that, don't run
+        I typically just start with exactly the file contents listed <.a href="https://tailwindcss.com/docs/installation#3-use-tailwind-in-your-css">here</.a>. If you do that, don't run
         the second command in this section.
       </span>
       <.codelist>

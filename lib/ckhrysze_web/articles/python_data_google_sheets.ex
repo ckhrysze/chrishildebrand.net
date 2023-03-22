@@ -21,11 +21,11 @@ defmodule CkhryszeWeb.Articles.PythonDataGoogleSheets do
 
     <p>
       As it turns out, this wasn't nearly as easy as I thought it would be, or should be. First, the current
-      <a href="https://developers.google.com/sheets/api/quickstart/python">quick start guide</a>
+      <.a href="https://developers.google.com/sheets/api/quickstart/python">quick start guide</.a>
       uses a
-      <a href="https://google-auth.readthedocs.io/en/latest/oauth2client-deprecation.html">
+      <.a href="https://google-auth.readthedocs.io/en/latest/oauth2client-deprecation.html">
         deprecated
-      </a>
+      </.a>
       auth library. Also,
       because the new library is more in touch with how Google wants developers to use APIs, it actually takes far less code
       that the quick start guide suggests, but additional setup steps.
@@ -35,10 +35,10 @@ defmodule CkhryszeWeb.Articles.PythonDataGoogleSheets do
       First, I needed to generate credentials. I feel like this has changed a lot since I last attempted to use a Google
       API (that was probably at least 5 years ago though...), and I'm not sure there aren't alternatives, but what worked
       for me was the following:
-      <ol>
+      <ol class="my-4 border border-solid border-gray-500 rounded bg-gray-300 text-sm font-mono p-2">
         <li>
           - Go to
-          <a href="https://console.cloud.google.com/home/dashboard">the Google Cloud console</a>
+          <.a href="https://console.cloud.google.com/home/dashboard">the Google Cloud console</.a>
           (No, I didn't need
           to setup an actual Google Cloud account...)
         </li>
@@ -57,100 +57,102 @@ defmodule CkhryszeWeb.Articles.PythonDataGoogleSheets do
       step zero.
     </p>
 
-    <p>
+    <div>
       Moving on, that last step should have downloaded a json file. Move and name that however, then setup an environment
       variable to point at it.
-      <div class="border bg-white p-1 text-sm">
-        <.highlight lang="bash">
-          export GOOGLE_APPLICATION_CREDENTIALS=just_downloaded_credentials.json
-        </.highlight>
-      </div>
-    </p>
+    </div>
+
+    <pre>
+      <.highlight lang="bash">
+        export GOOGLE_APPLICATION_CREDENTIALS=just_downloaded_credentials.json
+      </.highlight>
+    </pre>
 
     <p>
       Now that we have credentials in place, lets install some libraries. I'm using Python 3, though the docs suggest some
-      if not all Google libraries still support Python 2.
-      <div class="border bg-white p-1 text-sm">
+      if not all Google libraries still support Python 2. <pre>
         <.highlight lang="bash">
           python3 -m venv ~/.venv/googleapi
           pip install google-api-python-client
           pip install google-auth
           pip install google-auth-httplib2
         </.highlight>
-      </div>
+      </pre>
     </p>
 
     <p>
       Setup is done, lets write some code!
-      <div class="border bg-white p-1 text-sm">
+    </p>
+    <pre>
         <.highlight lang="python">
           data = []
           for i in range(4):
-          data.append([4, 3, 2])
+            data.append([4, 3, 2])
+
           create("Test Doc", data, owner="ckhrysze@gmail.com")
         </.highlight>
-      </div>
+      </pre>
 
-      <br />
+    <p>
       This is all I really want to get working. The next step will create a new spreadsheet, figure out the area to update
-      based on the size of the data, then update the sheet with the given data. <br /><br />
+      based on the size of the data, then update the sheet with the given data.
+    </p>
 
-      <div class="border bg-white p-1 text-sm">
+    <pre>
         <.highlight lang="python">
           def create(title='NoTitle', data=[], owner=None):
-          '''
-          Use the sheets API to create a sheet
-          '''
-          discoveryUrl = ('https://sheets.googleapis.com/$discovery/rest?version=v4')
-          service = discovery.build('sheets', 'v4', discoveryServiceUrl=discoveryUrl)
+            '''
+            Use the sheets API to create a sheet
+            '''
+            discoveryUrl = ('https://sheets.googleapis.com/$discovery/rest?version=v4')
+            service = discovery.build('sheets', 'v4', discoveryServiceUrl=discoveryUrl)
 
-          body = dict(properties=dict(title=title))
-          spreadsheet = service.spreadsheets().create(body=body).execute()
-          spreadsheet_id = spreadsheet['spreadsheetId']
+            body = dict(properties=dict(title=title))
+            spreadsheet = service.spreadsheets().create(body=body).execute()
+            spreadsheet_id = spreadsheet['spreadsheetId']
 
-          # 96 is the ascii value of the character before 'a'
-          last_column = 96 + len(data[0])
-          col = str(chr(last_column))
-          rows = len(data)
-          update_body = dict(values=data)
-          sheet_range = 'a1:{}{}'.format(col, rows)
+            # 96 is the ascii value of the character before 'a'
+            last_column = 96 + len(data[0])
+            col = str(chr(last_column))
+            rows = len(data)
+            update_body = dict(values=data)
+            sheet_range = 'a1:{}{}'.format(col, rows)
 
-          service.spreadsheets().values() \
-          .update(spreadsheetId=spreadsheet_id,
-          valueInputOption='RAW',
-          range=sheet_range,
-          body=update_body) \
-          .execute()
+            service.spreadsheets().values() \
+                                  .update(spreadsheetId=spreadsheet_id,
+                                          valueInputOption='RAW',
+                                          range=sheet_range,
+                                          body=update_body) \
+                                  .execute()
         </.highlight>
-      </div>
+      </pre>
 
-      <br /> Finally, use the Google Drive API to change the owner. <br /> <br />
+    <p>Finally, use the Google Drive API to change the owner.</p>
 
-      <div class="border bg-white p-1 text-sm">
+    <pre>
         <.highlight lang="python">
           def change_owner(spreadsheet_id, owner):
-          '''
-          Use the drive api to change the owner
-          '''
-          drive_service = discovery.build('drive', 'v3')
+            '''
+            Use the drive api to change the owner
+            '''
+            drive_service = discovery.build('drive', 'v3')
 
-          permission = drive_service.permissions().create(
-          fileId=spreadsheet_id,
-          transferOwnership=True,
-          body={
-          'type': 'user',
-          'role': 'owner',
-          'emailAddress': owner,
-          }
-          ).execute()
+            permission = drive_service.permissions().create(
+              fileId=spreadsheet_id,
+              transferOwnership=True,
+              body={
+                'type': 'user',
+                'role': 'owner',
+                'emailAddress': owner,
+              }
+            ).execute()
 
-          drive_service.files().update(
-          fileId=spreadsheet_id,
-          body={'permissionIds': [permission['id']]}
-          ).execute()
+            drive_service.files().update(
+              fileId=spreadsheet_id,
+              body={'permissionIds': [permission['id']]}
+            ).execute()
         </.highlight>
-      </div>
-    </p>
+      </pre>
 
     <p>
       Putting it all together, we get this:

@@ -12,7 +12,8 @@ defmodule CkhryszeWeb.Articles.MultiPageVue do
   def render(assigns) do
     ~H"""
     <p>
-      For front end work, my current tool of choice is <a href="https://vuejs.org/">Vue</a>. However, the benefits of a SPA
+      For front end work, my current tool of choice is
+      <.a href="https://vuejs.org/">Vue</.a>. However, the benefits of a SPA
       (single page app) don't out-weight the costs to me for most applications I've worked on. Vue is flexible enough to
       accommodate this, but I didn't have a great example of what that would truly look like.
     </p>
@@ -29,8 +30,9 @@ defmodule CkhryszeWeb.Articles.MultiPageVue do
     <p>
       Webpack will take each folder name under the pages directory, and capture the name. For each (chunk) name, it will
       create an entry point, and with the HtmlWebpackPlugin, an HTML page. This page, in turn, is based on the template in
-      the templates folder. The source for the project is <a href="https://github.com/ckhrysze/multipage-vue/tree/basic">at
-        Github here</a>, and looks like this:
+      the templates folder. The source for the project is
+      <.a href="https://github.com/ckhrysze/multipage-vue/tree/basic">at
+        Github here</.a>, and looks like this:
     </p>
 
     <script src="https://gist.github.com/ckhrysze/48b6ef6569e5b6bd6b127b76a022b04c.js">
@@ -58,8 +60,9 @@ defmodule CkhryszeWeb.Articles.MultiPageVue do
     </ul>
 
     <p>
-      Thanks to <a href="https://www.zhihu.com/people/plortinus/activities">Plortinus</a>
-      for creating <a href="https://github.com/Plortinus/vue-multiple-pages">Vue Multiple Pages</a>, which was a great resource and guide
+      Thanks to Plortinus
+      for creating
+      <.a href="https://github.com/Plortinus/vue-multiple-pages">Vue Multiple Pages</.a>, which was a great resource and guide
       for creating this.
     </p>
     """

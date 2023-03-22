@@ -47,6 +47,16 @@ defmodule CkhryszeWeb.Components do
     """
   end
 
+  slot :inner_block, required: true
+
+  def cmd(assigns) do
+    ~H"""
+    <span class="bg-slate-600 bg-opacity-10 inline rounded-sm pl-2 font-mono text-amber-800">
+      <%= render_slot(@inner_block) %>
+    </span>
+    """
+  end
+
   attr :lang, :string, default: nil
   slot :inner_block, required: true
 
