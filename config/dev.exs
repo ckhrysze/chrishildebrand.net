@@ -25,7 +25,7 @@ config :ckhrysze, CkhryszeWeb.Endpoint,
     patterns: [
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/posts/.*$",
-      ~r"lib/ckhrysze_web/(controllers|live|components)/.*(ex|heex)$"
+      ~r"lib/ckhrysze_web/(articles|controllers|live|components)/.*(ex|heex)$"
     ]
   ]
 

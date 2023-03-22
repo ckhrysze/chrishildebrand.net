@@ -1,11 +1,17 @@
-%{
-title: "LiveView Relaunch!",
-date: "2023-03-18",
-desc: "Overview of my site's relaunch using Phoenix LiveView",
-keywords: [],
-tags: []
-}
----
+defmodule CkhryszeWeb.Articles.RelaunchWithLiveview do
+  use CkhryszeWeb, :html
+
+  @behaviour CkhryszeWeb.Article
+
+  def date, do: ~D[2023-03-18]
+  def title, do: "LiveView Relaunch!"
+  def desc, do: "Overview of my site's relaunch using Phoenix LiveView"
+  def keywords, do: ~w[]
+  def tags, do: ~w[]
+
+  def render(assigns) do
+    ~H"""
+
 
 <p>I've relauched my site using Phoenix and LiveView! There were several reasons that pushed me to go from a Hugo
   powered static site to a hosted webapp.</p>
@@ -27,3 +33,6 @@ tags: []
 <p class="mt-2">The new app is up and running, and switching the domain will follow soon. I was able to take all my old
   posts and bring them in with minimal updates thanks to NimblePublisher. The only thing I'd like to have and don't yet
   is to be able to use components within the blog posts...something for the future.</p>
+"""
+  end
+end

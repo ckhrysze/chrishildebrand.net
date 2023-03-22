@@ -17,7 +17,7 @@ defmodule CkhryszeWeb do
   those modules here.
   """
 
-  def static_paths, do: ~w(assets fonts images favicon.ico robots.txt resume.pdf)
+  def static_paths, do: ~w(assets fonts images favicon.ico favicon.png robots.txt resume.pdf)
 
   def router do
     quote do
@@ -85,6 +85,7 @@ defmodule CkhryszeWeb do
       # Core UI components and translation
       import CkhryszeWeb.CoreComponents
       import CkhryszeWeb.Components
+      import CkhryszeWeb.Gettext
 
       # Shortcut for generating JS commands
       alias Phoenix.LiveView.JS

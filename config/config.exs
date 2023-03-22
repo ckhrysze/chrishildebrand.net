@@ -7,6 +7,9 @@
 # General application configuration
 import Config
 
+config :ckhrysze,
+  torchlight_key: System.get_env("TORCHLIGHT")
+
 # Configures the endpoint
 config :ckhrysze, CkhryszeWeb.Endpoint,
   url: [host: "localhost"],

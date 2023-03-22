@@ -1,6 +1,8 @@
 defmodule CkhryszeWeb.Components do
   use Phoenix.Component
 
+  import CkhryszeWeb.Gettext
+
   slot :inner_block, required: true
 
   def title_block(assigns) do
@@ -32,6 +34,27 @@ defmodule CkhryszeWeb.Components do
   def a(assigns) do
     ~H"""
     <a href={@href} class={["text-blue-900", @class]}><%= render_slot(@inner_block) %></a>
+    """
+  end
+
+  slot :inner_block, required: true
+
+  def codelist(assigns) do
+    ~H"""
+    <ul class="code-list my-4 border border-solid border-gray-500 rounded bg-gray-300 text-sm font-mono">
+      <%= render_slot(@inner_block) %>
+    </ul>
+    """
+  end
+
+  attr :lang, :string, default: nil
+  slot :inner_block, required: true
+
+  def highlight(assigns) do
+    ~H"""
+    <code class={"rounded language-" <> @lang}>
+      <%= render_slot(@inner_block) |> Phoenix.HTML.html_escape() |> Phoenix.HTML.safe_to_string() %>
+    </code>
     """
   end
 end

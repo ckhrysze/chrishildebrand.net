@@ -1,11 +1,17 @@
-%{
-date: "2021-01-08",
-title: "Mnesia Training Class Notes",
-desc: "Brief description of the Mnesia training class I helped create and lead.",
-keywords: [ "elixir", "mnesia", "terraform" ],
-tags: [ "elixir" ]
-}
----
+defmodule CkhryszeWeb.Articles.MnesiaConceptToReality do
+  use CkhryszeWeb, :html
+
+  @behaviour CkhryszeWeb.Article
+
+  def date, do: ~D[2021-01-08]
+  def title, do: "Mnesia Training Class Notes"
+  def desc, do: "Brief description of the Mnesia training class I helped create and lead."
+  def keywords, do: ~w[elixir mnesia terraform]
+  def tags, do: ~w[elixir]
+
+  def render(assigns) do
+    ~H"""
+
 
 <p>At the virtual ElixirConf 2020 <a href="https://twitter.com/alex_peachey" class="text-blue-900">@alex_peachey</a>
   and
@@ -54,3 +60,6 @@ tags: [ "elixir" ]
     </ul>
   </div>
 </div>
+"""
+  end
+end

@@ -3,11 +3,6 @@
 @import "tailwindcss/utilities";
 
 /* This file is for your main application CSS */
-.code-list {
-  list-style: none;
-  font-family: monospace;
-}
-
 .code-list li:before {
   content: '> ';
   margin-left: 0.5em;
