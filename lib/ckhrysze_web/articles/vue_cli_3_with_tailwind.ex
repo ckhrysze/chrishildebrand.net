@@ -12,10 +12,13 @@ defmodule CkhryszeWeb.Articles.VueCli3WithTailwind do
   def render(assigns) do
     ~H"""
     <p>
-      I have been happily using <.a href="https://vuejs.org/">Vue.js</.a>
-      for some time now, and a bit more recently <.a href="https://tailwindcss.com/">Tailwind CSS</.a>. Although there were likely some webpack weirdness to get them
+      I have been happily using
+      <.a href="https://vuejs.org/">Vue.js</.a>
+      for some time now, and a bit more recently
+      <.a href="https://tailwindcss.com/">Tailwind CSS</.a>. Although there were likely some webpack weirdness to get them
       working the first time, it was painless enough that I no longer remember the process. However, I recently felt like
-      spinning up something new with the shiny <.a href="https://cli.vuejs.org/">Vue CLI</.a>, but was a bit worried on how
+      spinning up something new with the shiny
+      <.a href="https://cli.vuejs.org/">Vue CLI</.a>, but was a bit worried on how
       the integration would work.
     </p>
 
@@ -65,7 +68,8 @@ defmodule CkhryszeWeb.Articles.VueCli3WithTailwind do
     <div>
       <div class="text-lg">Create a css file using Tailwind directives</div>
       <span class="text-sm">
-        I typically just start with exactly the file contents listed <.a href="https://tailwindcss.com/docs/installation#3-use-tailwind-in-your-css">here</.a>. If you do that, don't run
+        I typically just start with exactly the file contents listed
+        <.a href="https://tailwindcss.com/docs/installation#3-use-tailwind-in-your-css">here</.a>. If you do that, don't run
         the second command in this section.
       </span>
       <.codelist>
@@ -87,16 +91,14 @@ defmodule CkhryszeWeb.Articles.VueCli3WithTailwind do
       </span>
     </div>
 
-    <pre>
-        <.highlight lang="javascript">
-          "postcss": {
-            "plugins": {
-              "tailwindcss": "./src/tailwind.js",
-              "autoprefixer": {}
-            }
-          },
-        </.highlight>
-      </pre>
+    <.highlight lang="javascript" cache_id={title() <> "1"} phx-no-format>
+      "postcss": {
+        "plugins": {
+          "tailwindcss": "./src/tailwind.js",
+          "autoprefixer": {}
+        }
+      },
+    </.highlight>
 
     <div>
       <div class="text-lg">Add reference to css file</div>
@@ -105,15 +107,13 @@ defmodule CkhryszeWeb.Articles.VueCli3WithTailwind do
         the App.vue file, which meant also adding a script section in the first place. The script section in src/App.vue
         became:
       </span>
-      <pre>
-        <.highlight lang="html">
-          <script>
-            import "./assets/main.css";
+      <.highlight lang="html" cache_id={title() <> "2"} phx-no-format>
+        <script>
+          import "./assets/main.css";
 
-            export default {};
-          </script>
-        </.highlight>
-      </pre>
+          export default {};
+        </script>
+      </.highlight>
     </div>
 
     <p>
