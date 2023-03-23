@@ -1,9 +1,0 @@
-<.main class="flex flex-col gap-10">
-  <div :for={entry <- Ckhrysze.BlogEngine.entries()} class="flex flex-col gap-8">
-    <a href={~p"/blog/#{entry.path}"}>
-      <div class="text-2xl"><%= entry.title %></div>
-      <div class="text-sm text-gray-800"><%= entry.date %></div>
-      <div class="mt-2"><%= entry.desc %></div>
-    </a>
-  </div>
-</.main>

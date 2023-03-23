@@ -24,16 +24,14 @@ defmodule CkhryszeWeb.Articles.SmallFrustrations do
       was surprised to learn the following works just fine:
     </p>
 
-    <pre>
-      <.highlight lang="python">
-        class Example:
-          pass
+    <.highlight lang="python" cache_id={title() <> "1"} phx-no-format>
+      class Example:
+        pass
 
-        ex = Example()
-        ex.unexpected = 5
-        print(ex.unexpected)
-      </.highlight>
-    </pre>
+      ex = Example()
+      ex.unexpected = 5
+      print(ex.unexpected)
+    </.highlight>
 
     <p>
       The next frustration of the day was centered around the relationship between sql alchemy's transaction handling and

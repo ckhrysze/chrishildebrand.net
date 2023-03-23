@@ -15,9 +15,10 @@ defmodule Ckhrysze.Application do
       # Start Finch
       {Finch, name: Ckhrysze.Finch},
       # Start the Endpoint (http/https)
-      CkhryszeWeb.Endpoint
+      CkhryszeWeb.Endpoint,
       # Start a worker by calling: Ckhrysze.Worker.start_link(arg)
       # {Ckhrysze.Worker, arg}
+      {Cachex, name: :torchlight_cache}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

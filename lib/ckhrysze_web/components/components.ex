@@ -1,7 +1,7 @@
 defmodule CkhryszeWeb.Components do
   use Phoenix.Component
 
-  import CkhryszeWeb.Gettext
+  IO.puts("Compiling components")
 
   slot :inner_block, required: true
 
@@ -29,11 +29,12 @@ defmodule CkhryszeWeb.Components do
 
   attr :class, :string, default: nil
   attr :href, :string, required: true
+  attr :rest, :global
   slot :inner_block, required: true
 
   def a(assigns) do
     ~H"""
-    <a href={@href} class={["text-blue-900", @class]}><%= render_slot(@inner_block) %></a>
+    <a href={@href} class={["text-blue-900", @class]} {@rest}><%= render_slot(@inner_block) %></a>
     """
   end
 
@@ -57,14 +58,19 @@ defmodule CkhryszeWeb.Components do
     """
   end
 
+  attr :cache_id, :string, required: true
   attr :lang, :string, default: nil
   slot :inner_block, required: true
 
   def highlight(assigns) do
     ~H"""
-    <code class={"rounded language-" <> @lang}>
-      <%= render_slot(@inner_block) |> Phoenix.HTML.html_escape() |> Phoenix.HTML.safe_to_string() %>
-    </code>
+    <pre class="bg-white rounded">
+      <%= render_slot(@inner_block)
+      |> Phoenix.HTML.html_escape()
+      |> Phoenix.HTML.safe_to_string()
+      |> Ckhrysze.Torchlight.process(assigns)
+      |> Phoenix.HTML.raw() %>
+    </pre>
     """
   end
 end

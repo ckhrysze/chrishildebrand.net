@@ -45,12 +45,10 @@ defmodule CkhryszeWeb.Articles.ShouldMock do
       over test*. The following config (pytest.ini) will set that up.
     </p>
 
-    <pre>
-      <.highlight lang="ini">
-        [pytest]
-        python_functions=should_*
-      </.highlight>
-    </pre>
+    <.highlight lang="ini" cache_id={title() <> "1"} phx-no-format>
+      [pytest]
+      python_functions=should_*
+    </.highlight>
 
     <p>
       Next, I wanted my mocks back. I held off for some time, because Pytests fixture's are very nice (and well
@@ -59,17 +57,15 @@ defmodule CkhryszeWeb.Articles.ShouldMock do
       in a decent direction). After a bit of research this is roughly what I settled on for my first use.
     </p>
 
-    <pre>
-      <.highlight lang="python">
-        def should_work():
-          with mock.patch('module_under_test.ThingToBeMocked') as Mock:
-            instance = Mock.return_value
-            instance.instance_method.return_value = 'some value'
+    <.highlight lang="python" cache_id={title() <> "2"} phx-no-format>
+      def should_work():
+        with mock.patch('module_under_test.ThingToBeMocked') as Mock:
+          instance = Mock.return_value
+          instance.instance_method.return_value = 'some value'
 
-            actual = module_under_test.ThingToBeMocked.instance_method()
-            assert actual == expected
-      </.highlight>
-    </pre>
+          actual = module_under_test.ThingToBeMocked.instance_method()
+          assert actual == expected
+    </.highlight>
 
     <p>
       I'm not a huge fan of my example. If I end up writing a part two, it will be a small but more real project, likely

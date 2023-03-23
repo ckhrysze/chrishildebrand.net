@@ -62,97 +62,91 @@ defmodule CkhryszeWeb.Articles.PythonDataGoogleSheets do
       variable to point at it.
     </div>
 
-    <pre>
-      <.highlight lang="bash">
-        export GOOGLE_APPLICATION_CREDENTIALS=just_downloaded_credentials.json
-      </.highlight>
-    </pre>
+    <.highlight lang="bash" cache_id={title() <> "1"} phx-no-format>
+      export GOOGLE_APPLICATION_CREDENTIALS=just_downloaded_credentials.json
+    </.highlight>
 
     <p>
       Now that we have credentials in place, lets install some libraries. I'm using Python 3, though the docs suggest some
-      if not all Google libraries still support Python 2. <pre>
-        <.highlight lang="bash">
-          python3 -m venv ~/.venv/googleapi
-          pip install google-api-python-client
-          pip install google-auth
-          pip install google-auth-httplib2
-        </.highlight>
-      </pre>
+      if not all Google libraries still support Python 2. <.highlight
+        lang="bash"
+        cache_id={title() <> "2"}
+        phx-no-format
+      >
+        python3 -m venv ~/.venv/googleapi
+        pip install google-api-python-client
+        pip install google-auth
+        pip install google-auth-httplib2
+      </.highlight>
     </p>
 
     <p>
       Setup is done, lets write some code!
     </p>
-    <pre>
-        <.highlight lang="python">
+    <.highlight lang="python" cache_id={title() <> "3"} phx-no-format>
           data = []
           for i in range(4):
             data.append([4, 3, 2])
 
           create("Test Doc", data, owner="ckhrysze@gmail.com")
         </.highlight>
-      </pre>
 
     <p>
       This is all I really want to get working. The next step will create a new spreadsheet, figure out the area to update
       based on the size of the data, then update the sheet with the given data.
     </p>
 
-    <pre>
-        <.highlight lang="python">
-          def create(title='NoTitle', data=[], owner=None):
-            '''
-            Use the sheets API to create a sheet
-            '''
-            discoveryUrl = ('https://sheets.googleapis.com/$discovery/rest?version=v4')
-            service = discovery.build('sheets', 'v4', discoveryServiceUrl=discoveryUrl)
+    <.highlight lang="python" cache_id={title() <> "4"} phx-no-format>
+      def create(title='NoTitle', data=[], owner=None):
+        '''
+        Use the sheets API to create a sheet
+        '''
+        discoveryUrl = ('https://sheets.googleapis.com/$discovery/rest?version=v4')
+        service = discovery.build('sheets', 'v4', discoveryServiceUrl=discoveryUrl)
 
-            body = dict(properties=dict(title=title))
-            spreadsheet = service.spreadsheets().create(body=body).execute()
-            spreadsheet_id = spreadsheet['spreadsheetId']
+        body = dict(properties=dict(title=title))
+        spreadsheet = service.spreadsheets().create(body=body).execute()
+        spreadsheet_id = spreadsheet['spreadsheetId']
 
-            # 96 is the ascii value of the character before 'a'
-            last_column = 96 + len(data[0])
-            col = str(chr(last_column))
-            rows = len(data)
-            update_body = dict(values=data)
-            sheet_range = 'a1:{}{}'.format(col, rows)
+        # 96 is the ascii value of the character before 'a'
+        last_column = 96 + len(data[0])
+        col = str(chr(last_column))
+        rows = len(data)
+        update_body = dict(values=data)
+        sheet_range = 'a1:{}{}'.format(col, rows)
 
-            service.spreadsheets().values() \
-                                  .update(spreadsheetId=spreadsheet_id,
-                                          valueInputOption='RAW',
-                                          range=sheet_range,
-                                          body=update_body) \
-                                  .execute()
-        </.highlight>
-      </pre>
+        service.spreadsheets().values() \
+                              .update(spreadsheetId=spreadsheet_id,
+                                      valueInputOption='RAW',
+                                      range=sheet_range,
+                                      body=update_body) \
+                              .execute()
+    </.highlight>
 
     <p>Finally, use the Google Drive API to change the owner.</p>
 
-    <pre>
-        <.highlight lang="python">
-          def change_owner(spreadsheet_id, owner):
-            '''
-            Use the drive api to change the owner
-            '''
-            drive_service = discovery.build('drive', 'v3')
+    <.highlight lang="python" cache_id={title() <> "5"} phx-no-format>
+      def change_owner(spreadsheet_id, owner):
+        '''
+        Use the drive api to change the owner
+        '''
+        drive_service = discovery.build('drive', 'v3')
 
-            permission = drive_service.permissions().create(
-              fileId=spreadsheet_id,
-              transferOwnership=True,
-              body={
-                'type': 'user',
-                'role': 'owner',
-                'emailAddress': owner,
-              }
-            ).execute()
+        permission = drive_service.permissions().create(
+          fileId=spreadsheet_id,
+          transferOwnership=True,
+          body={
+            'type': 'user',
+            'role': 'owner',
+            'emailAddress': owner,
+          }
+        ).execute()
 
-            drive_service.files().update(
-              fileId=spreadsheet_id,
-              body={'permissionIds': [permission['id']]}
-            ).execute()
-        </.highlight>
-      </pre>
+        drive_service.files().update(
+          fileId=spreadsheet_id,
+          body={'permissionIds': [permission['id']]}
+        ).execute()
+    </.highlight>
 
     <p>
       Putting it all together, we get this:

@@ -44,9 +44,15 @@ defmodule Ckhrysze.MixProject do
       {:finch, "~> 0.13"},
       {:telemetry_metrics, "~> 0.6"},
       {:telemetry_poller, "~> 1.0"},
+
+      # added after gen
+      {:cachex, "~> 3.6"},
+      {:castore, "~> 0.1"},
+      {:gettext, "~> 0.0"},
       {:jason, "~> 1.2"},
+      {:mint, "~> 1.4"},
       {:plug_cowboy, "~> 2.5"},
-      {:gettext, "~> 0.0"}
+      {:tesla, "~> 1.5"}
     ]
   end
 
