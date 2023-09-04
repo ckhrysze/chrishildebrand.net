@@ -48,6 +48,7 @@ defmodule Ckhrysze.MixProject do
       # added after gen
       {:cachex, "~> 3.6"},
       {:castore, "~> 0.1"},
+      {:chameleon, "~> 2.5"},
       {:gettext, "~> 0.0"},
       {:jason, "~> 1.2"},
       {:mint, "~> 1.4"},

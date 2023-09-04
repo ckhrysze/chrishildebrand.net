@@ -23,6 +23,8 @@ defmodule CkhryszeWeb.Router do
     get "/contact", PageController, :contact
     get "/blog", BlogController, :list
     get "/blog/:slug", BlogController, :article
+
+    live "/experience", ExperienceLive, :main
   end
 
   # Other scopes may use custom stacks.
