@@ -39,6 +39,33 @@ defmodule Ckhrysze.Experience do
   def data do
     [
       %{
+        id: "ockam",
+        name: "Ockam",
+        modal_id: "ockam-modal",
+        name_length: 6,
+        font_size: 0.05,
+        reverse: false,
+        months: 18,
+        hsl: {35, 85, 45},
+        roles: [
+          %{
+            name: "Dev",
+            skills: [
+              %{name: "Elixir", weight: 2},
+              %{name: "JS", weight: 1}
+            ]
+          },
+          %{
+            name: "Ops",
+            skills: [
+              %{name: "Terraform", weight: 2},
+              %{name: "Kubernetes", weight: 2},
+              %{name: "AWS", weight: 2}
+            ]
+          }
+        ]
+      },
+      %{
         id: "vs",
         name: "Versus Systems",
         modal_id: "versus-systems-modal",
